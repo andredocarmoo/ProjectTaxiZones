@@ -1,0 +1,20 @@
+{
+	"name": "Calendar_Explore",
+	"properties": {
+		"folder": {
+			"name": "Explore"
+		},
+		"content": {
+			"query": "use nyc_taxi_discovery\n\nSELECT *\nmax(LEN(date_key)),\nmax(LEN(date)),\nmax(LEN(year)),\nmax(LEN(month)),\nmax(LEN(day)),\nmax(LEN(date_key)),\nFROM OPENROWSET(\n    BULK 'raw/calendar.csv',\n    DATA_SOURCE = 'nyc_taxi_data',\n    FORMAT = 'CSV',\n    PARSER_VERSION = '2.0',\n    HEADER_ROW = TRUE\n) AS calendar;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "nyc_taxi_discovery",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
